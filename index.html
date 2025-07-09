@@ -40,6 +40,11 @@
             border: 1px solid rgba(100, 150, 255, 0.2);
         }
         
+        .title-container {
+            position: relative;
+            display: inline-block;
+        }
+        
         h1 {
             font-family: 'Indie Flower', cursive;
             font-size: 3.8rem;
@@ -54,6 +59,30 @@
             transform: rotate(-2deg);
             text-align: center;
             line-height: 1.1;
+            padding-right: 30px; /* Space for butterfly */
+        }
+        
+        /* Butterfly on the Y letter of "Birthday" */
+        .y-butterfly {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.ibb.co/Q7QLPLbn/Pngtree-cute-blue-butterfly-14649407.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: 
+                drop-shadow(0 0 5px rgba(106, 180, 255, 0.7))
+                brightness(1.2);
+            animation: gentleFloat 4s infinite ease-in-out;
+            right: 1.15em; /* Adjusted to land on 'y' of "Birthday" */
+            bottom: -0.2em;
+            transform: rotate(15deg);
+            z-index: 10;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0) rotate(15deg); }
+            50% { transform: translateY(-8px) rotate(20deg); }
         }
         
         h1::after {
@@ -153,11 +182,11 @@
             background: rgba(106, 140, 255, 0.9);
         }
         
-        /* Butterfly Music Animation */
+        /* Butterfly Music Notes */
         .music-butterfly {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             background-image: url('https://i.ibb.co/Q7QLPLbn/Pngtree-cute-blue-butterfly-14649407.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -166,7 +195,7 @@
             pointer-events: none;
             z-index: 10;
             filter: 
-                drop-shadow(0 0 5px rgba(106, 180, 255, 0.7))
+                drop-shadow(0 0 3px rgba(106, 180, 255, 0.7))
                 brightness(1.2);
         }
         
@@ -179,50 +208,23 @@
         /* Butterfly Positioning */
         .photo-butterfly {
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             z-index: 3;
             background-image: url('https://i.ibb.co/Q7QLPLbn/Pngtree-cute-blue-butterfly-14649407.png');
             background-size: contain;
             background-repeat: no-repeat;
             filter: 
                 drop-shadow(0 0 8px rgba(106, 180, 255, 0.7))
-                drop-shadow(0 0 15px rgba(106, 180, 255, 0.4))
                 brightness(1.2);
-            animation: float 10s infinite ease-in-out, glow 2s infinite alternate;
+            animation: gentleFloat 6s infinite ease-in-out;
         }
         
         /* Position butterflies at 4 corners */
-        .butterfly-tl { top: 0; left: 0; transform: rotate(-15deg); }
-        .butterfly-tr { top: 0; right: 0; transform: rotate(15deg); }
-        .butterfly-bl { bottom: 80px; left: 0; transform: rotate(15deg); }
-        .butterfly-br { bottom: 80px; right: 0; transform: rotate(-15deg); }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translate(5px, -5px) rotate(5deg) scale(1.05);
-            }
-            50% {
-                transform: translate(-5px, -5px) rotate(-5deg) scale(0.95);
-            }
-            75% {
-                transform: translate(5px, 5px) rotate(3deg) scale(1.03);
-            }
-        }
-        
-        @keyframes glow {
-            0% { filter: 
-                drop-shadow(0 0 8px rgba(106, 180, 255, 0.7))
-                drop-shadow(0 0 15px rgba(106, 180, 255, 0.4))
-                brightness(1.2); }
-            100% { filter: 
-                drop-shadow(0 0 12px rgba(106, 180, 255, 0.9))
-                drop-shadow(0 0 20px rgba(106, 180, 255, 0.6))
-                brightness(1.4); }
-        }
+        .butterfly-tl { top: 0; left: 0; animation-delay: 0s; }
+        .butterfly-tr { top: 0; right: 0; animation-delay: 0.5s; }
+        .butterfly-bl { bottom: 80px; left: 0; animation-delay: 1s; }
+        .butterfly-br { bottom: 80px; right: 0; animation-delay: 1.5s; }
         
         /* Sparkles */
         .sparkle {
@@ -237,43 +239,29 @@
             pointer-events: none;
         }
         
+        /* Message sparkles */
+        .message-sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #88aaff;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: messageSparkle 3s infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
         @keyframes sparkle {
             0% { transform: scale(0); opacity: 0; }
             50% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(0); opacity: 0; }
         }
         
-        /* Floating Butterflies */
-        .floating-butterfly {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url('https://i.ibb.co/Q7QLPLbn/Pngtree-cute-blue-butterfly-14649407.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: 1;
-            opacity: 0.9;
-            filter: 
-                drop-shadow(0 0 8px rgba(106, 180, 255, 0.7))
-                drop-shadow(0 0 15px rgba(106, 180, 255, 0.4))
-                brightness(1.2);
-            animation: floatAround 15s infinite ease-in-out, glow 2s infinite alternate;
-            pointer-events: none;
-        }
-        
-        @keyframes floatAround {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translate(20px, -10px) rotate(5deg) scale(1.05);
-            }
-            50% {
-                transform: translate(-20px, -20px) rotate(-5deg) scale(0.95);
-            }
-            75% {
-                transform: translate(15px, 10px) rotate(3deg) scale(1.03);
-            }
+        @keyframes messageSparkle {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            30% { opacity: 0.7; }
+            100% { transform: translateY(-20px) scale(1); opacity: 0; }
         }
         
         /* Rest of your existing CSS */
@@ -288,6 +276,7 @@
             color: #e6e6fa;
             position: relative;
             border: 1px solid rgba(100, 150, 255, 0.2);
+            overflow: hidden;
         }
         
         .signature {
@@ -326,16 +315,19 @@
     </audio>
     
     <div class="container">
-        <h1>Happy Birthday Sweetie!</h1>
+        <div class="title-container">
+            <h1>Happy Birthday Sweetie!</h1>
+            <div class="y-butterfly"></div>
+        </div>
         
         <div class="birthday-cake">🎂</div>
         
         <div class="photo-container">
             <!-- Butterflies at 4 corners -->
-            <div class="photo-butterfly butterfly-tl" style="animation-delay: 0s;"></div>
-            <div class="photo-butterfly butterfly-tr" style="animation-delay: 0.5s;"></div>
-            <div class="photo-butterfly butterfly-bl" style="animation-delay: 1s;"></div>
-            <div class="photo-butterfly butterfly-br" style="animation-delay: 1.5s;"></div>
+            <div class="photo-butterfly butterfly-tl"></div>
+            <div class="photo-butterfly butterfly-tr"></div>
+            <div class="photo-butterfly butterfly-bl"></div>
+            <div class="photo-butterfly butterfly-br"></div>
             
             <div class="photo-frame">
                 <img src="https://i.ibb.co/8FsQhMD/IMG-20250709-154721.jpg" alt="Borsha's Photo">
@@ -345,7 +337,7 @@
             <div id="music-toggle">♫</div>
         </div>
         
-        <div class="message">
+        <div class="message" id="birthday-message">
             Like the most beautiful butterfly, you bring color and joy wherever you go!<br>
             May your birthday be as magical as a starry night,<br>
             filled with love, laughter, and dreams come true.<br>
@@ -360,64 +352,63 @@
     </div>
     
     <script>
-        // Create floating butterflies
-        function createButterflies() {
-            const numButterflies = 8;
-            
-            for (let i = 0; i < numButterflies; i++) {
-                const butterfly = document.createElement('div');
-                butterfly.className = 'floating-butterfly';
-                
-                // Random position
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const size = 30 + Math.random() * 40;
-                const delay = Math.random() * 8;
-                const duration = 10 + Math.random() * 15;
-                const zIndex = Math.random() > 0.7 ? 3 : 1;
-                
-                butterfly.style.left = `${left}%`;
-                butterfly.style.top = `${top}%`;
-                butterfly.style.width = `${size}px`;
-                butterfly.style.height = `${size}px`;
-                butterfly.style.animationDelay = `${delay}s`;
-                butterfly.style.animationDuration = `${duration}s`;
-                butterfly.style.zIndex = zIndex;
-                
-                document.body.appendChild(butterfly);
-            }
-        }
-        
-        // Create sparkles
+        // Create sparkles (optimized)
         function createSparkles() {
-            setInterval(() => {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                
-                const startLeft = Math.random() * 100;
-                const startTop = Math.random() * 100;
-                const delay = Math.random() * 2;
-                const duration = 1 + Math.random() * 2;
-                
-                sparkle.style.left = `${startLeft}%`;
-                sparkle.style.top = `${startTop}%`;
-                sparkle.style.animationDelay = `${delay}s`;
-                sparkle.style.animationDuration = `${duration}s`;
-                
-                // Random blue color
-                const colors = ['#6a8cff', '#88aaff', '#aaccff', '#cceeff'];
-                sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                document.body.appendChild(sparkle);
-                
-                // Remove sparkle after animation
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 2000);
-            }, 100);
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            const startLeft = Math.random() * 100;
+            const startTop = Math.random() * 100;
+            const delay = Math.random() * 2;
+            const duration = 1 + Math.random() * 2;
+            
+            sparkle.style.left = `${startLeft}%`;
+            sparkle.style.top = `${startTop}%`;
+            sparkle.style.animationDelay = `${delay}s`;
+            sparkle.style.animationDuration = `${duration}s`;
+            
+            // Random blue color
+            const colors = ['#6a8cff', '#88aaff', '#aaccff', '#cceeff'];
+            sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
         }
         
-        // Create music butterflies animation
+        // Create message sparkles
+        function createMessageSparkles() {
+            const message = document.getElementById('birthday-message');
+            const rect = message.getBoundingClientRect();
+            
+            const sparkle = document.createElement('div');
+            sparkle.className = 'message-sparkle';
+            
+            const startLeft = Math.random() * rect.width;
+            const delay = Math.random() * 2;
+            const duration = 2 + Math.random() * 2;
+            
+            sparkle.style.left = `${startLeft}px`;
+            sparkle.style.bottom = '0';
+            sparkle.style.animationDelay = `${delay}s`;
+            sparkle.style.animationDuration = `${duration}s`;
+            
+            // Random blue color
+            const colors = ['#6a8cff', '#88aaff', '#aaccff'];
+            sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            message.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+        
+        // Create butterfly music notes
         function createMusicButterflies() {
             if (!musicPlaying) return;
             
@@ -426,8 +417,6 @@
             butterfly.style.left = `${50 + (Math.random() * 20 - 10)}%`;
             butterfly.style.animationDuration = `${2 + Math.random() * 2}s`;
             butterfly.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
-            butterfly.style.width = `${20 + Math.random() * 20}px`;
-            butterfly.style.height = butterfly.style.width;
             
             const toggle = document.getElementById('music-toggle');
             toggle.appendChild(butterfly);
@@ -436,6 +425,10 @@
                 butterfly.remove();
             }, 3000);
         }
+        
+        // Create sparkles at intervals
+        setInterval(createSparkles, 200);
+        setInterval(createMessageSparkles, 300);
         
         // Music control
         const bgMusic = document.getElementById('bgMusic');
@@ -484,15 +477,29 @@
         // Enable music on any interaction
         document.addEventListener('click', enableMusic, { once: true });
         document.addEventListener('touchstart', enableMusic, { once: true });
-        document.addEventListener('keydown', enableMusic, { once: true });
         
-        // Initialize effects
+        // Start with music icon showing it's ready to play
         window.onload = function() {
-            createButterflies();
-            createSparkles();
-            
-            // Start with music icon showing it's ready to play
             musicToggle.textContent = '♪';
+            
+            // Precise positioning for the 'y' butterfly
+            const title = document.querySelector('h1');
+            const text = title.textContent;
+            const birthdayIndex = text.indexOf('Birthday');
+            
+            if (birthdayIndex > -1) {
+                const yIndex = birthdayIndex + 7; // Position of 'y' in "Birthday"
+                const range = document.createRange();
+                const textNode = title.firstChild;
+                range.setStart(textNode, yIndex);
+                range.setEnd(textNode, yIndex + 1);
+                const rect = range.getBoundingClientRect();
+                const titleRect = title.getBoundingClientRect();
+                
+                const butterfly = document.querySelector('.y-butterfly');
+                butterfly.style.right = `${titleRect.right - rect.right + 20}px`;
+                butterfly.style.bottom = `${titleRect.bottom - rect.bottom}px`;
+            }
         };
     </script>
 </body>
